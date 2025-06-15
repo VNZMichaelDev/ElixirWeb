@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElixirWeb Studio - Hacemos Realidad Tus Ideas</title>
+    <meta name="description" content="ElixirWeb Studio - Desarrollo web profesional, diseño UI/UX y aplicaciones web. Transformamos tus ideas en experiencias digitales extraordinarias.">
+    <meta name="keywords" content="desarrollo web, diseño web, UI/UX, aplicaciones web, sitios web profesionales">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Background -->
+    <div class="hero-background">
+        <img src="fondo.jpg" alt="Space Background" class="bg-image">
+        <div class="bg-overlay"></div>
+        <div class="bg-gradient-x"></div>
+        <div class="bg-gradient-y"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-logo" onclick="scrollToSection('inicio')">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="ElixirWeb Studio" class="logo-img">
+                    </div>
+                    <span class="logo-text">ElixirWeb Studio</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="nav-menu desktop-menu">
+                    <button class="nav-link" onclick="scrollToSection('inicio')">
+                        Inicio
+                        <span class="nav-underline"></span>
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('servicios')">
+                        Servicios
+                        <span class="nav-underline"></span>
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('precios')">
+                        Precios
+                        <span class="nav-underline"></span>
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('testimonios')">
+                        Testimonios
+                        <span class="nav-underline"></span>
+                    </button>
+                    <button class="nav-link" onclick="scrollToSection('contacto')">
+                        Contacto
+                        <span class="nav-underline"></span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <button class="mobile-nav-link" onclick="scrollToSection('inicio')">Inicio</button>
+            <button class="mobile-nav-link" onclick="scrollToSection('servicios')">Servicios</button>
+            <button class="mobile-nav-link" onclick="scrollToSection('precios')">Precios</button>
+            <button class="mobile-nav-link" onclick="scrollToSection('testimonios')">Testimonios</button>
+            <button class="mobile-nav-link" onclick="scrollToSection('contacto')">Contacto</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-title">
+                        <h1>
+                            <span class="title-gradient">ELIXIRWEB</span>
+                            <br>
+                            <span class="title-white">STUDIO</span>
+                        </h1>
+                    </div>
+
+                    <div class="hero-subtitle">
+                        <p class="subtitle-gradient">Hacemos Realidad Tus Ideas</p>
+                        <p class="subtitle-text">
+                            Transformamos conceptos en experiencias digitales extraordinarias que impulsan el crecimiento de tu
+                            negocio. Somos especialistas en crear sitios web únicos y funcionales.
+                        </p>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            Solicitar Presupuesto
+                        </button>
+                        <button class="btn btn-outline" onclick="scrollToSection('servicios')">
+                            Conocer Más
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Proyectos Completados</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfacción Cliente</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Soporte Técnico</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.3★</div>
+                            <div class="stat-label">Calificación Promedio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <button onclick="scrollToSection('servicios')" class="scroll-btn">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-sparkles"></i>
+                    <span>Nuestros Servicios</span>
+                </div>
+                <h2 class="section-title">
+                    Soluciones Digitales
+                    <br>
+                    <span class="title-gradient">Profesionales</span>
+                </h2>
+                <p class="section-description">
+                    Ofrecemos servicios completos de diseño y desarrollo web para llevar tu negocio al siguiente nivel digital.
+                </p>
+            </div>
+
+            <div class="services-grid">
+  <div class="service-card">
+    <div class="service-content">
+      <div class="service-header">
+        <div class="service-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="service-title-area">
+          <h3>Desarrollo Web</h3>
+          <p>Sitios web modernos y funcionales con tecnologías de vanguardia</p>
+        </div>
+      </div>
+      <div class="service-features">
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>React & Next.js</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Responsive Design</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Optimización SEO</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Hosting Incluido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-content">
+      <div class="service-header">
+        <div class="service-icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <div class="service-title-area">
+          <h3>Diseño UI/UX</h3>
+          <p>Interfaces atractivas que convierten visitantes en clientes</p>
+        </div>
+      </div>
+      <div class="service-features">
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Diseño Personalizado</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Prototipado</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Experiencia de Usuario</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Branding Digital</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-content">
+      <div class="service-header">
+        <div class="service-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="service-title-area">
+          <h3>Aplicaciones Web</h3>
+          <p>Aplicaciones web progresivas de alto rendimiento</p>
+        </div>
+      </div>
+      <div class="service-features">
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>PWA Development</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>API Integration</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Base de Datos</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Panel Admin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-content">
+      <div class="service-header">
+        <div class="service-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="service-title-area">
+          <h3>Mantenimiento</h3>
+          <p>Soporte técnico continuo y actualizaciones regulares</p>
+        </div>
+      </div>
+      <div class="service-features">
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Soporte 24/7</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Actualizaciones</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Backups</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-check-circle"></i>
+          <span>Monitoreo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="precios" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge pricing-badge">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Nuestros Precios</span>
+                </div>
+                <h2 class="section-title">
+                    Planes Accesibles
+                    <br>
+                    <span class="title-gradient">Para Cada Necesidad</span>
+                </h2>
+                <p class="section-description">
+                    Ofrecemos soluciones adaptadas a tu presupuesto sin comprometer la calidad ni el rendimiento.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Plan Básico -->
+                <div class="pricing-card">
+                    <div class="pricing-content">
+                        <div class="pricing-header">
+                            <div class="plan-info">
+                                <h3>Básico</h3>
+                                <p>Emprendedores o negocios pequeños</p>
+                            </div>
+                            <div class="plan-icon basic">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-price">$70 USD</div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>1 Página (Landing Page)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Diseño responsivo (móvil/tablet)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Botón de WhatsApp</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Galería o catálogo básico</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Entrega en 5 días</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>1 revisión incluida</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-plan basic" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            Solicitar Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan Estándar -->
+                <div class="pricing-card">
+                    <div class="pricing-content">
+                        <div class="pricing-header">
+                            <div class="plan-info">
+                                <h3>Estándar</h3>
+                                <p>Negocios en crecimiento</p>
+                            </div>
+                            <div class="plan-icon standard">
+                                <i class="fas fa-award"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-price">$130 USD</div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Hasta 3 páginas (Inicio, Nosotros, Contacto)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Diseño moderno y personalizado</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Formulario de contacto funcional</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Integración con redes sociales</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Optimización para velocidad</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Entrega en 7 días</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>2 revisiones incluidas</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-plan standard" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            Solicitar Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">POPULAR</div>
+                    <div class="pricing-content">
+                        <div class="pricing-header">
+                            <div class="plan-info">
+                                <h3>Premium</h3>
+                                <p>Marcas consolidadas o e-commerce pequeño</p>
+                            </div>
+                            <div class="plan-icon premium">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-price">$200 USD</div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Hasta 6 páginas</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Animaciones y efectos visuales</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Catálogo de productos (sin pasarela de pago)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>SEO básico (Google, meta tags)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Su dominio</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Integración con correo personalizado</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Entrega en 10 días</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>3 revisiones incluidas</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-plan premium" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            Solicitar Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Quote Section -->
+            <div class="custom-quote">
+                <div class="custom-quote-content">
+                    <h3>¿Necesitas algo personalizado?</h3>
+                    <p>
+                        Si quieres algo mejor y personalizado puedes escribir al WhatsApp para cotizar un proyecto a medida que
+                        se adapte perfectamente a tus necesidades específicas.
+                    </p>
+                    <button class="btn btn-custom" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        Cotizar Proyecto Personalizado
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge testimonials-badge">
+                    <i class="fas fa-users"></i>
+                    <span>Testimonios</span>
+                </div>
+                <h2 class="section-title">
+                    Clientes Satisfechos
+                    <br>
+                    <span class="title-gradient">Resultados Reales</span>
+                </h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "ElixirWeb Studio transformó completamente nuestra presencia digital. El resultado superó todas nuestras expectativas."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">V</div>
+                            <div class="author-info">
+                                <p class="author-name">Victoria Desing</p>
+                                <p class="author-company">Diseñadora Grafica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Profesionalismo excepcional y atención al detalle. Definitivamente los recomiendo para cualquier proyecto web."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">F</div>
+                            <div class="author-info">
+                                <p class="author-name">Franky Escobar</p>
+                                <p class="author-company">Empresario,Portafolio De Servicios</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "La calidad del trabajo y el soporte post-entrega son extraordinarios. Los mejores en su campo."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">A</div>
+                            <div class="author-info">
+                                <p class="author-name">Ana Martínez</p>
+                                <p class="author-company">Director, Digital Boutique</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <!-- Solo dentro de la sección contacto -->
+    <section id="contacto" class="contact-section">
+        <div class="contact-background">
+            <img src="banner.jpg" alt="Space CTA Background" class="contact-bg-image">
+            <div class="contact-overlay"></div>
+            <div class="contact-gradient"></div>
+        </div>
+        
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-card">
+                    <div class="contact-line"></div>
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h2 class="contact-title">
+                        ¿Listo Para Empezar?
+                        <br>
+                        <span class="title-gradient">¡Hablemos!</span>
+                    </h2>
+                    <p class="contact-description">
+                        Contáctanos por WhatsApp y recibe una consulta gratuita. Te ayudamos a llevar tu proyecto al siguiente nivel.
+                    </p>
+                    <div class="contact-buttons">
+                        <button class="btn btn-whatsapp" onclick="openWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Contactar por WhatsApp</span>
+                        </button>
+                        <button class="btn btn-call" onclick="openWhatsApp()">
+                            <i class="fas fa-phone"></i>
+                            <span>Llamar Ahora</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <button onclick="scrollToSection('inicio')" class="footer-logo">
+                        <h3>ElixirWeb Studio</h3>
+                    </button>
+                    <p>Hacemos Realidad Tus Ideas ✨</p>
+                </div>
+
+                <div class="footer-links">
+                    <button onclick="scrollToSection('servicios')">Servicios</button>
+                    <button onclick="scrollToSection('precios')">Precios</button>
+                    <button onclick="scrollToSection('testimonios')">Testimonios</button>
+                    <button onclick="scrollToSection('contacto')">Contacto</button>
+                </div>
+
+                <div class="footer-divider"></div>
+
+                <p class="footer-copyright">© 2024 ElixirWeb Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
