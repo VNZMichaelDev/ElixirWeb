@@ -1216,52 +1216,34 @@ body {
     padding: 1rem;
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    text-align: center;
+  .navbar {
+    top: 0.5rem; /* Más pegado arriba en móvil */
+  }
+
+  .hero-section {
+    padding-top: 5.5rem; /* Deja espacio para el navbar fijo */
+  }
+
+  .services-section {
+    padding-top: 2.5rem !important; /* Más espacio arriba */
+    padding-bottom: 2.5rem !important;
   }
 
   .services-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.2rem;
   }
 
   .service-card {
-    padding: 2rem;
+    padding: 1.2rem 0.8rem 1.5rem 0.8rem; /* Menos padding en móvil */
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
   }
 
-  .service-header {
-    gap: 1.5rem;
-  }
-
-  .service-icon {
-    min-width: 4rem;
-    min-height: 4rem;
-    font-size: 2rem;
-    padding: 1.25rem;
-  }
-
-  .service-title-area h3 {
-    font-size: 1.8rem;
-  }
-
-  .pricing-grid,
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-card {
-    padding: 2rem 1rem;
-  }
-
-  .contact-icon {
-    width: 4rem;
-    height: 4rem;
-    font-size: 2rem;
-  }
-
-  .footer-links {
-    gap: 1rem;
+  .custom-quote {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.2rem 0.8rem;
   }
 }
 
