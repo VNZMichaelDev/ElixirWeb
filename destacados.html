@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Destacados - ElixirWeb Studio</title>
+    <meta name="description" content="Descubre nuestros proyectos destacados. ElixirWeb Studio - Desarrollo web profesional con resultados extraordinarios.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="destacados.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://i.postimg.cc/mk9TsPJB/fondo.jpg" as="image">
+    <link rel="preload" href="https://i.postimg.cc/W3CsCG95/logo.png" as="image">
+</head>
+<body>
+    <!-- Hero Background -->
+    <div class="hero-background">
+        <img src="https://i.postimg.cc/mk9TsPJB/fondo.jpg" alt="Projects Background" class="bg-image" loading="eager">
+        <div class="bg-overlay"></div>
+        <div class="bg-gradient-x"></div>
+        <div class="bg-gradient-y"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-logo" onclick="window.location.href='index.html'">
+                    <div class="logo-container">
+                        <img src="https://i.postimg.cc/W3CsCG95/logo.png" alt="ElixirWeb Studio" class="logo-img" loading="eager">
+                    </div>
+                    <span class="logo-text">ElixirWeb Studio</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="nav-menu desktop-menu">
+                    <a href="index.html" class="nav-link">
+                        Inicio
+                        <span class="nav-underline"></span>
+                    </a>
+                    <a href="index.html#servicios" class="nav-link">
+                        Servicios
+                        <span class="nav-underline"></span>
+                    </a>
+                    <a href="destacados.html" class="nav-link active">
+                        Proyectos
+                        <span class="nav-underline"></span>
+                    </a>
+                    <a href="index.html#precios" class="nav-link">
+                        Precios
+                        <span class="nav-underline"></span>
+                    </a>
+                    <a href="index.html#contacto" class="nav-link">
+                        Contacto
+                        <span class="nav-underline"></span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="index.html#servicios" class="mobile-nav-link">Servicios</a>
+            <a href="destacados.html" class="mobile-nav-link">Proyectos</a>
+            <a href="index.html#precios" class="mobile-nav-link">Precios</a>
+            <a href="index.html#contacto" class="mobile-nav-link">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Projects Hero Section -->
+    <section class="projects-hero-section">
+        <div class="container">
+            <div class="projects-hero-content">
+                <div class="projects-hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Nuestro Trabajo</span>
+                </div>
+                <h1 class="projects-hero-title">
+                    <span class="title-gradient">Proyectos</span>
+                    <br>
+                    Destacados
+                </h1>
+                <p class="projects-hero-subtitle">
+                    Descubre algunos de nuestros trabajos más exitosos y las soluciones innovadoras que hemos creado para nuestros clientes
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Project 1 - Volarix Capital -->
+                <div class="project-card" data-category="trading">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/ydYJsyyB/Captura-de-pantalla-42.png" alt="Volarix Capital - Copy Trading" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Vite</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Copy Trading</span>
+                        </div>
+                        <h3 class="project-title">Volarix Capital</h3>
+                        <p class="project-description">
+                            Plataforma de Copy Trading moderna con funciones completas, panel de administrador y sistema de gestión de inversiones.
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <i class="fas fa-eye"></i>
+                                <span>5K+ visitas</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>100+ usuarios</span>
+                            </div>
+                        </div>
+                        <a href="https://volarix-capital.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-project">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 - RiotStar -->
+                <div class="project-card" data-category="gaming">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/RhtGLm6g/Captura-de-pantalla-43.png" alt="RiotStar Gaming Platform" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Diseño</span>
+                        </div>
+                        <h3 class="project-title">RiotStar </h3>
+                        <p class="project-description">
+                            Portafolio De Para Diseñadora Grafica Simple Con Animaciones Y Efecto Glow .
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>2K+ vistas</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                <span>24/7 online</span>
+                            </div>
+                        </div>
+                        <a href="https://riotstar.unaux.com/?i=2" target="_blank" rel="noopener noreferrer" class="btn btn-project">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 - EGM -->
+                <div class="project-card" data-category="corporate">
+                    <div class="project-image">
+                        <img src="https://i.postimg.cc/CMnvgGPb/Captura-de-pantalla-44.png" alt="EGM Corporate Website" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-tech">
+                                <span class="tech-tag">Html5</span>
+                                <span class="tech-tag">Css3</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">
+                            <i class="fas fa-building"></i>
+                            <span>Corporativo</span>
+                        </div>
+                        <h3 class="project-title">EGM Corporate</h3>
+                        <p class="project-description">
+                            Sitio web corporativo profesional con diseño elegante, optimización SEO y experiencia de usuario excepcional.
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <i class="fas fa-search"></i>
+                                <span>5k+ vistas</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>98+ PageSpeed</span>
+                            </div>
+                        </div>
+                        <a href="https://egm-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-project">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="projects-cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h2>¿Tienes un proyecto en mente?</h2>
+                <p>Hagamos realidad tu próxima idea digital. Contáctanos para una consulta gratuita.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-whatsapp" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        Iniciar Proyecto
+                    </button>
+                    <a href="index.html#precios" class="btn btn-outline">
+                        <i class="fas fa-dollar-sign"></i>
+                        Ver Precios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <button onclick="window.location.href='index.html'" class="footer-logo">
+                        <h3>ElixirWeb Studio</h3>
+                    </button>
+                    <p>Hacemos Realidad Tus Ideas ✨</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="index.html#servicios">Servicios</a>
+                    <a href="destacados.html">Proyectos</a>
+                    <a href="index.html#precios">Precios</a>
+                    <a href="index.html#contacto">Contacto</a>
+                </div>
+
+                <div class="footer-divider"></div>
+
+                <p class="footer-copyright">© 2024 ElixirWeb Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+      <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/684e78b14aea20190b635e6c/1itp8etlj';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

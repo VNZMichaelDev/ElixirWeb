@@ -9,6 +9,30 @@ function openWhatsApp() {
   window.open(whatsappUrl, "_blank")
 }
 
+// Social Media Functions
+function openFacebook() {
+  window.open("https://www.facebook.com/profile.php?id=61577714213330", "_blank")
+}
+
+function openInstagram() {
+  window.open("https://www.instagram.com/elixirwebstudio/", "_blank")
+}
+
+function openTikTok() {
+  window.open("https://www.tiktok.com/@elixirdevone?is_from_webapp=1&sender_device=pc", "_blank")
+}
+
+function openSecondPhone() {
+  const phoneNumber = "584245851434"
+  const message = "¡Hola! Me interesa conocer más sobre los servicios de ElixirWeb Studio. ¿Podrían ayudarme?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+function openEmail() {
+  window.open("mailto:ElixirWebStudio@gmail.com", "_blank")
+}
+
 // Smooth scroll function
 function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId)
@@ -60,34 +84,33 @@ function handleNavbarScroll() {
   }
 }
 
-// Intersection Observer for animations MEJORADO
+// OPTIMIZED Intersection Observer for animations
 function setupScrollAnimations() {
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
   }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("fade-in")
-        observer.unobserve(entry.target)
+        observer.unobserve(entry.target) // Stop observing once animated
       }
     })
   }, observerOptions)
 
-  // Solo animar tarjetas y headers
+  // Only animate cards and headers
   const elementsToAnimate = document.querySelectorAll(
-    ".service-card, .pricing-card, .testimonial-card, .section-header"
+    ".service-card, .pricing-card, .testimonial-card, .section-header, .social-card, .project-card",
   )
 
   elementsToAnimate.forEach((el) => {
-    el.classList.remove("fade-in")
     observer.observe(el)
   })
 }
 
-// Counter animation for stats MEJORADO
+// OPTIMIZED Counter animation for stats
 function animateCounters() {
   const counters = document.querySelectorAll(".stat-number")
 
@@ -101,8 +124,8 @@ function animateCounters() {
 
     const numericValue = Number.parseInt(target.replace("+", ""))
     let current = 0
-    const increment = numericValue / 60
-    const delay = index * 200
+    const increment = numericValue / 40 // Faster animation
+    const delay = index * 100 // Reduced delay
 
     setTimeout(() => {
       const timer = setInterval(() => {
@@ -113,55 +136,95 @@ function animateCounters() {
         } else {
           counter.textContent = Math.floor(current) + "+"
         }
-      }, 30)
+      }, 25) // Faster updates
     }, delay)
   })
 }
 
-// ANIMACIÓN MEJORADA PARA SERVICIOS
+// OPTIMIZED Service animations
 function setupServiceAnimations() {
   const serviceCards = document.querySelectorAll(".service-card")
 
   serviceCards.forEach((card, index) => {
-    // Animación de entrada escalonada
-    card.style.animationDelay = `${index * 0.2}s`
-
-    // Efecto hover mejorado
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-15px) scale(1.02)"
-      this.style.boxShadow = "0 25px 50px rgba(147, 51, 234, 0.2)"
-    })
-
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0) scale(1)"
-      this.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.1)"
-    })
+    // Reduced animation delay
+    card.style.animationDelay = `${index * 0.1}s`
   })
 }
 
-// Event listeners
+// OPTIMIZED Image lazy loading
+function setupOptimizedLazyLoading() {
+  const images = document.querySelectorAll("img[loading='lazy']")
+
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target
+
+            // Preload the image
+            const imageLoader = new Image()
+            imageLoader.onload = () => {
+              img.style.opacity = "1"
+            }
+            imageLoader.src = img.src
+
+            imageObserver.unobserve(img)
+          }
+        })
+      },
+      {
+        rootMargin: "50px", // Start loading 50px before entering viewport
+      },
+    )
+
+    images.forEach((img) => {
+      img.style.opacity = "0"
+      img.style.transition = "opacity 0.3s ease"
+      imageObserver.observe(img)
+    })
+  }
+}
+
+// PERFORMANCE: Debounced scroll handler
+function debounce(func, wait) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+// Event listeners - OPTIMIZED
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize animations
   setupScrollAnimations()
   setupServiceAnimations()
+  setupOptimizedLazyLoading()
 
   // Animate counters when hero section is visible
   const heroSection = document.getElementById("inicio")
-  const heroObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(animateCounters, 1000)
-          heroObserver.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
+  if (heroSection) {
+    const heroObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(animateCounters, 500) // Reduced delay
+            heroObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.3 }, // Reduced threshold
+    )
 
-  heroObserver.observe(heroSection)
+    heroObserver.observe(heroSection)
+  }
 
-  // ARREGLO PARA EL FONDO - Asegurar que la imagen de fondo se mantenga visible y FIJA
+  // OPTIMIZED background image handling
   const backgroundImage = document.querySelector(".bg-image")
   if (backgroundImage) {
     backgroundImage.style.opacity = "1"
@@ -169,25 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
     backgroundImage.style.visibility = "visible"
     backgroundImage.style.position = "fixed"
     backgroundImage.style.transform = "none"
-
-    // Prevenir que se oculte
-    backgroundImage.onload = function () {
-      this.style.opacity = "1"
-      this.style.display = "block"
-      this.style.visibility = "visible"
-      this.style.position = "fixed"
-      this.style.transform = "none"
-    }
-
-    // Si hay error, no ocultar
-    backgroundImage.onerror = function () {
-      console.log("Error loading background image, but keeping visible")
-      this.style.opacity = "1"
-      this.style.display = "block"
-    }
   }
 
-  // Asegurar que el fondo de contacto también se mantenga visible y fijo
   const contactBgImage = document.querySelector(".contact-bg-image")
   if (contactBgImage) {
     contactBgImage.style.opacity = "1"
@@ -195,173 +241,62 @@ document.addEventListener("DOMContentLoaded", () => {
     contactBgImage.style.visibility = "visible"
     contactBgImage.style.transform = "none"
   }
-
-  // Ajustar visibilidad de la imagen del menú
-  const menuBgImage = document.querySelector(".bg-image");
-
-  if (menuBgImage) {
-    // Solo aseguramos que la imagen esté visible al cargar
-    menuBgImage.style.opacity = "1";
-    menuBgImage.style.display = "block";
-    menuBgImage.style.visibility = "visible";
-  }
 })
 
-// Scroll event listeners SIMPLIFICADO (SIN PARALLAX)
-window.addEventListener("scroll", () => {
-  handleNavbarScroll()
-})
+// OPTIMIZED scroll event listener with debouncing
+window.addEventListener("scroll", debounce(handleNavbarScroll, 10))
 
 // Resize event listener
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 768 && isMobileMenuOpen) {
-    closeMobileMenu()
-  }
-})
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    if (window.innerWidth > 768 && isMobileMenuOpen) {
+      closeMobileMenu()
+    }
+  }, 250),
+)
 
-// Close mobile menu when clicking outside
+// OPTIMIZED click outside handler
 document.addEventListener("click", (event) => {
   const mobileMenu = document.getElementById("mobile-menu")
   const menuBtn = document.querySelector(".mobile-menu-btn")
 
-  if (isMobileMenuOpen && !mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+  if (isMobileMenuOpen && !mobileMenu?.contains(event.target) && !menuBtn?.contains(event.target)) {
     closeMobileMenu()
   }
 })
 
-// Smooth scroll polyfill for older browsers
-if (!("scrollBehavior" in document.documentElement.style)) {
-  const smoothScrollPolyfill = (target) => {
-    const element = document.getElementById(target)
-    if (element) {
-      const offsetTop = element.offsetTop - 100
-      const startPosition = window.pageYOffset
-      const distance = offsetTop - startPosition
-      const duration = 1000
-      let start = null
+// PERFORMANCE: Preload critical resources
+function preloadCriticalResources() {
+  const criticalImages = ["https://i.postimg.cc/mk9TsPJB/fondo.jpg", "https://i.postimg.cc/W3CsCG95/logo.png"]
 
-      function step(timestamp) {
-        if (!start) start = timestamp
-        const progress = timestamp - start
-        const progressPercentage = Math.min(progress / duration, 1)
-
-        // Easing function
-        const ease =
-          progressPercentage < 0.5
-            ? 2 * progressPercentage * progressPercentage
-            : 1 - Math.pow(-2 * progressPercentage + 2, 3) / 2
-
-        window.scrollTo(0, startPosition + distance * ease)
-
-        if (progress < duration) {
-          requestAnimationFrame(step)
-        }
-      }
-
-      requestAnimationFrame(step)
-    }
-  }
-
-  // Override scrollToSection for older browsers
-  window.scrollToSection = (sectionId) => {
-    smoothScrollPolyfill(sectionId)
-    closeMobileMenu()
-  }
+  criticalImages.forEach((src) => {
+    const link = document.createElement("link")
+    link.rel = "preload"
+    link.as = "image"
+    link.href = src
+    document.head.appendChild(link)
+  })
 }
 
-// Performance optimization: Lazy load images (SOLO PARA IMÁGENES QUE NO SEAN EL FONDO)
-function setupLazyLoading() {
-  const images = document.querySelectorAll("img[src]:not(.bg-image):not(.contact-bg-image)")
+// Initialize performance optimizations
+document.addEventListener("DOMContentLoaded", preloadCriticalResources)
 
-  if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target
-          img.style.opacity = "0"
-          img.style.transition = "opacity 0.3s ease"
+// PERFORMANCE: Reduce paint operations
+function optimizeAnimations() {
+  const cards = document.querySelectorAll(".project-card, .service-card")
 
-          img.onload = () => {
-            img.style.opacity = "1"
-          }
+  cards.forEach((card) => {
+    card.style.willChange = "transform"
 
-          imageObserver.unobserve(img)
-        }
-      })
+    card.addEventListener("mouseenter", () => {
+      card.style.willChange = "transform"
     })
 
-    images.forEach((img) => imageObserver.observe(img))
-  }
-}
-
-// Initialize lazy loading
-document.addEventListener("DOMContentLoaded", setupLazyLoading)
-
-// Add loading state for buttons
-function addButtonLoadingState() {
-  const buttons = document.querySelectorAll(".btn")
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      if (this.onclick && this.onclick.toString().includes("openWhatsApp")) {
-        this.style.opacity = "0.7"
-        this.style.pointerEvents = "none"
-
-        setTimeout(() => {
-          this.style.opacity = "1"
-          this.style.pointerEvents = "auto"
-        }, 1000)
-      }
+    card.addEventListener("mouseleave", () => {
+      card.style.willChange = "auto"
     })
   })
 }
 
-// Initialize button loading states
-document.addEventListener("DOMContentLoaded", addButtonLoadingState)
-
-// FUNCIÓN MEJORADA PARA MANEJAR IMÁGENES (EXCLUYENDO LOS FONDOS)
-function fixImageLoading() {
-  const images = document.querySelectorAll("img:not(.bg-image):not(.contact-bg-image)")
-
-  images.forEach((img) => {
-    if (!img.dataset.listenerAdded) {
-      img.addEventListener("error", function handler() {
-        // Evita bucles infinitos
-        if (this.dataset.triedExtensions) return
-
-        const baseSrc = this.src.split(".")[0]
-        const extensions = [".png", ".jpg", ".jpeg", ".webp", ".gif"]
-        let found = false
-
-        let tryIndex = 0
-        const tryNext = () => {
-          if (tryIndex >= extensions.length) {
-            // Si ninguna funciona, oculta la imagen
-            this.style.display = "none"
-            return
-          }
-          const testImg = new window.Image()
-          testImg.src = baseSrc + extensions[tryIndex]
-          testImg.onload = () => {
-            this.src = testImg.src
-            found = true
-          }
-          testImg.onerror = () => {
-            tryIndex++
-            tryNext()
-          }
-        }
-        tryNext()
-
-        this.dataset.triedExtensions = "1"
-      })
-      img.dataset.listenerAdded = "1"
-    }
-  })
-}
-
-// Ejecuta la función cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-  fixImageLoading()
-  setTimeout(fixImageLoading, 1000)
-})
+document.addEventListener("DOMContentLoaded", optimizeAnimations)
