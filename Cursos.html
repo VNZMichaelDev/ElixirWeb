@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos Destacados - ElixirWeb Studio</title>
-    <meta name="description" content="Descubre nuestros proyectos destacados. ElixirWeb Studio - Desarrollo web profesional con resultados extraordinarios.">
+    <title>Elixir Class - ElixirWeb Studio</title>
+    <meta name="description" content="Aprende desarrollo web con nuestros cursos especializados. ElixirWeb Studio - Formación profesional en tecnologías web modernas.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="destacados.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
     <!-- Hero Background -->
     <div class="hero-background">
-        <img src="https://i.postimg.cc/mk9TsPJB/fondo.jpg" alt="Projects Background" class="bg-image" loading="eager">
+        <img src="https://i.postimg.cc/mk9TsPJB/fondo.jpg" alt="Courses Background" class="bg-image" loading="eager">
         <div class="bg-overlay"></div>
         <div class="bg-gradient-x"></div>
         <div class="bg-gradient-y"></div>
@@ -42,7 +42,7 @@
                         Servicios
                         <span class="nav-underline"></span>
                     </a>
-                    <a href="destacados.html" class="nav-link active">
+                    <a href="destacados.html" class="nav-link">
                         Proyectos
                         <span class="nav-underline"></span>
                     </a>
@@ -50,7 +50,7 @@
                         Eventos
                         <span class="nav-underline"></span>
                     </a>
-                    <a href="Cursos.html" class="nav-link">
+                    <a href="Cursos.html" class="nav-link active">
                         Cursos
                         <span class="nav-underline"></span>
                     </a>
@@ -82,160 +82,149 @@
             <a href="index.html#contacto" class="mobile-nav-link">Contacto</a>
         </div>
     </nav>
-    <!-- Projects Hero Section -->
+
+    <!-- Live Chat Button -->
+    <div class="live-chat-btn" onclick="openLiveChat()">
+        <i class="fas fa-comments"></i>
+        <span>Chat en vivo</span>
+    </div>
+
+    <!-- Courses Hero Section -->
     <section class="projects-hero-section">
         <div class="container">
             <div class="projects-hero-content">
                 <div class="projects-hero-badge">
-                    <i class="fas fa-star"></i>
-                    <span>Nuestro Trabajo</span>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Nuestros Cursos</span>
                 </div>
                 <h1 class="projects-hero-title">
-                    <span class="title-gradient">Proyectos</span>
+                    <span class="title-gradient">Elixir</span>
                     <br>
-                    Destacados
+                    Class
                 </h1>
                 <p class="projects-hero-subtitle">
-                    Descubre algunos de nuestros trabajos más exitosos y las soluciones innovadoras que hemos creado para nuestros clientes
+                    Aprende las tecnologías web más demandadas con nuestros cursos especializados y certificaciones profesionales
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Projects Grid Section -->
+    <!-- Courses Grid Section -->
     <section class="projects-grid-section">
         <div class="container">
             <div class="projects-grid">
-                <!-- Project 1 - Volarix Capital -->
-                <div class="project-card" data-category="trading">
+                <!-- Course 1 - HTML & CSS Fundamentals -->
+                <div class="project-card" data-category="frontend">
                     <div class="project-image">
-                        <img src="https://i.postimg.cc/ydYJsyyB/Captura-de-pantalla-42.png" alt="Volarix Capital - Copy Trading" class="project-img" loading="lazy">
-                        <div class="project-overlay">
-                            <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Next.js</span>
-                                <span class="tech-tag">Vite</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Copy Trading</span>
-                        </div>
-                        <h3 class="project-title">Volarix Capital</h3>
-                        <p class="project-description">
-                            Plataforma de Copy Trading moderna con funciones completas, panel de administrador y sistema de gestión de inversiones.
-                        </p>
-                        <div class="project-stats">
-                            <div class="stat">
-                                <i class="fas fa-eye"></i>
-                                <span>5K+ visitas</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>100+ usuarios</span>
-                            </div>
-                        </div>
-                        <a href="https://volarix-capital.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-project">
-                            <i class="fas fa-external-link-alt"></i>
-                            Ver Proyecto
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 - RiotStar -->
-                <div class="project-card" data-category="gaming">
-                    <div class="project-image">
-                        <img src="https://i.postimg.cc/RhtGLm6g/Captura-de-pantalla-43.png" alt="RiotStar Gaming Platform" class="project-img" loading="lazy">
+                        <img src="https://i.postimg.cc/X7LdfpY2/2.jpg" alt="HTML & CSS Course" class="project-img" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-tech">
                                 <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Visual Studio</span>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
                         <div class="project-category">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Diseño</span>
+                            <i class="fas fa-code"></i>
+                            <span>Frontend</span>
                         </div>
-                        <h3 class="project-title">RiotStar </h3>
+                        <h3 class="project-title">HTML & CSS</h3>
                         <p class="project-description">
-                            Portafolio De Para Diseñadora Grafica Simple Con Animaciones Y Efecto Glow .
+                            Aprende desde cero: instalación de Visual Studio Code, HTML y CSS hasta crear tu primera página web y subirla a internet.
                         </p>
                         <div class="project-stats">
                             <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>2K+ vistas</span>
+                                <i class="fas fa-clock"></i>
+                                <span>Hasta Terminar El Proyecto</span>
                             </div>
                             <div class="stat">
-                                <i class="fas fa-clock"></i>
-                                <span>24/7 online</span>
+                                <i class="fas fa-star"></i>
+                                <span>4.8/5 rating</span>
                             </div>
                         </div>
-                        <a href="https://riotstar.unaux.com/?i=2" target="_blank" rel="noopener noreferrer" class="btn btn-project">
-                            <i class="fas fa-external-link-alt"></i>
-                            Ver Proyecto
-                        </a>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span style="text-decoration: line-through; color: #6b7280;">$40 USD</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span style="color: #10b981; font-weight: bold;">$20 USD (50% OFF)</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-project" onclick="openWhatsAppHTMLCSS()">
+                            <i class="fab fa-whatsapp"></i>
+                            Inscribirse Ahora
+                        </button>
                     </div>
                 </div>
 
-                <!-- Project 3 - EGM -->
-                <div class="project-card" data-category="corporate">
+                <!-- Course 2 - Web Design & Mockups -->
+                <div class="project-card" data-category="design">
                     <div class="project-image">
-                        <img src="https://i.postimg.cc/CMnvgGPb/Captura-de-pantalla-44.png" alt="EGM Corporate Website" class="project-img" loading="lazy">
+                        <img src="https://i.postimg.cc/N0kcFq4r/dise-ame-una-foto-para-poner-en-una-miniatura-de-Elixir-Desing-Class-o-como-se-escriba-sabes-en-Co.jpg" alt="Web Design & Mockups Course" class="project-img" loading="lazy">
                         <div class="project-overlay">
                             <div class="project-tech">
-                                <span class="tech-tag">Html5</span>
-                                <span class="tech-tag">Css3</span>
-                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Canva</span>
+                                <span class="tech-tag">Mockups</span>
+                                <span class="tech-tag">Flayer</span>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
                         <div class="project-category">
-                            <i class="fas fa-building"></i>
-                            <span>Corporativo</span>
+                            <i class="fas fa-palette"></i>
+                            <span>Diseño</span>
                         </div>
-                        <h3 class="project-title">EGM Corporate</h3>
+                        <h3 class="project-title">Diseño Web & Mockups</h3>
                         <p class="project-description">
-                            Sitio web corporativo profesional con diseño elegante, optimización SEO y experiencia de usuario excepcional.
+                            Domina el arte del diseño web: creación de mockups profesionales, diseño de interfaces modernas con Canva y Diseño De Flayer,Logos Todo Completo.
                         </p>
                         <div class="project-stats">
                             <div class="stat">
-                                <i class="fas fa-search"></i>
-                                <span>5k+ vistas</span>
+                                <i class="fas fa-clock"></i>
+                                <span>8 Clases</span>
                             </div>
                             <div class="stat">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span>98+ PageSpeed</span>
+                                <i class="fas fa-project-diagram"></i>
+                                <span>8 proyectos</span>
                             </div>
                         </div>
-                        <a href="https://egm-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-project">
-                            <i class="fas fa-external-link-alt"></i>
-                            Ver Proyecto
-                        </a>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span style="text-decoration: line-through; color: #6b7280;">$30 USD</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-fire"></i>
+                                <span style="color: #10b981; font-weight: bold;">$18 USD (40% OFF)</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-project" onclick="openWhatsAppDesign()">
+                            <i class="fab fa-whatsapp"></i>
+                            Inscribirse Ahora
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Payment Methods Section -->
     <section class="projects-cta-section">
         <div class="container">
             <div class="cta-content">
                 <div class="cta-icon">
-                    <i class="fas fa-lightbulb"></i>
+                    <i class="fas fa-credit-card"></i>
                 </div>
-                <h2>¿Tienes un proyecto en mente?</h2>
-                <p>Hagamos realidad tu próxima idea digital. Contáctanos para una consulta gratuita.</p>
+                <h2>Métodos de Pago Disponibles</h2>
+                <p>Paga tu inscripción de $2 USD con PayPal, Binance, Cualquier Otro Comunicarse Al WhatsApp. ¡Inscríbete fácilmente!</p>
                 <div class="cta-buttons">
-                    <button class="btn btn-whatsapp" onclick="openWhatsApp()">
+                    <button class="btn btn-whatsapp" onclick="openWhatsAppCursos()">
                         <i class="fab fa-whatsapp"></i>
-                        Iniciar Proyecto
+                        Consultar Cursos
                     </button>
                     <a href="index.html#precios" class="btn btn-outline">
                         <i class="fas fa-dollar-sign"></i>
