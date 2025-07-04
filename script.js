@@ -1,10 +1,71 @@
 // Global variables
 let isMobileMenuOpen = false
+let Tawk_API // Declare Tawk_API variable
 
-// WhatsApp function
+// Live Chat function
+function openLiveChat() {
+  if (typeof Tawk_API !== "undefined" && Tawk_API.maximize) {
+    Tawk_API.maximize()
+  } else {
+    // Fallback to WhatsApp if Tawk.to is not loaded
+    openWhatsApp()
+  }
+}
+
+// WhatsApp function - General
 function openWhatsApp() {
   const phoneNumber = "3225880160"
   const message = "¡Hola! Me interesa conocer más sobre los servicios de ElixirWeb Studio. ¿Podrían ayudarme?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+// WhatsApp functions - Cursos específicos
+function openWhatsAppHTMLCSS() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesa el curso de HTML & CSS Fundamentals por $20 USD (50% OFF). ¿Podrían darme más información sobre el contenido, duración y cómo inscribirme?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+function openWhatsAppDesign() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesa el curso de Diseño Web & Mockups por $18 USD (40% OFF). ¿Podrían darme más información sobre el programa, proyectos incluidos y proceso de inscripción?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+function openWhatsAppCursos() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesan sus cursos de Elixir Class. ¿Podrían darme información sobre todos los cursos disponibles, precios y métodos de pago?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+// WhatsApp functions - Eventos específicos
+function openWhatsAppProgramming() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesa participar en el Elixir Event - Competencia de Programación. La inscripción es de $2 USD. ¿Podrían darme más detalles sobre las fechas, requisitos y cómo inscribirme?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+function openWhatsAppDesignEvent() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesa participar en la Competición de Diseño. La inscripción es de $2 USD. ¿Podrían darme información sobre las fechas, herramientas permitidas y proceso de inscripción?"
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  window.open(whatsappUrl, "_blank")
+}
+
+function openWhatsAppEventos() {
+  const phoneNumber = "3225880160"
+  const message =
+    "¡Hola! Me interesan sus eventos de Elixir Event. ¿Podrían darme información sobre próximas fechas, métodos de pago para la inscripción y todos los eventos disponibles?"
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
   window.open(whatsappUrl, "_blank")
 }
