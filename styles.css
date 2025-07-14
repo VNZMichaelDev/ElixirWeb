@@ -1,3 +1,426 @@
+.buy-modal-form label {
+  color: #a855f7;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.buy-modal-form input[type="file"] {
+  background: #181c2f;
+  color: #fff;
+  border: 1px solid #a855f7;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.7rem;
+  width: 100%;
+}
+.buy-modal-form textarea {
+  background: #181c2f;
+  color: #fff;
+  border: 1px solid #a855f7;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  min-height: 48px;
+  resize: vertical;
+  margin-bottom: 0.7rem;
+}
+.buy-modal-form img {
+  display: block;
+  margin: 0 auto 1rem auto;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.10);
+}
+/* --- MODAL DE COMPRA --- */
+.buy-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(24, 28, 47, 0.85);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  overflow-y: auto;
+  padding: 2vh 0;
+}
+.buy-modal.active {
+  display: flex;
+}
+.buy-modal-content {
+  background: rgba(20, 20, 35, 0.98);
+  border-radius: 2.2rem;
+  box-shadow: 0 8px 32px 0 rgba(80, 0, 120, 0.22);
+  padding: 2.8rem 3.2rem 2.2rem 3.2rem;
+  max-width: 600px;
+  min-width: 340px;
+  width: 98vw;
+  position: relative;
+  text-align: center;
+  animation: scaleIn 0.28s cubic-bezier(.4,2,.6,1) both;
+  margin: 2vh auto;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Inter', 'Montserrat', 'Poppins', Arial, sans-serif;
+  font-size: 1.12rem;
+  letter-spacing: 0.01em;
+  color: #f3f4f6;
+  transition: box-shadow 0.18s, max-width 0.18s, padding 0.18s;
+  will-change: box-shadow, max-width, padding;
+}
+
+@media (min-width: 1024px) {
+  .buy-modal-content {
+    max-width: 700px;
+    padding: 3.2rem 4.5rem 2.5rem 4.5rem;
+  }
+}
+
+.buy-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.buy-modal-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  border-radius: 1.2rem;
+  background: linear-gradient(135deg, #fff 60%, #a855f7 100%);
+  box-shadow: 0 4px 18px rgba(168,85,247,0.18);
+  border: 3px solid #a855f7;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.buy-modal-header h2 {
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+  background: linear-gradient(to right, #a855f7, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(59,130,246,0.08);
+}
+
+.buy-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 2.3rem;
+  color: #a855f7;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.18s, background 0.18s;
+  background: none;
+  border: none;
+  width: 2.7rem;
+  height: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  touch-action: manipulation;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.08);
+}
+.buy-modal-close:hover, .buy-modal-close:focus {
+  color: #fff;
+  background: linear-gradient(135deg, #a855f7 60%, #3b82f6 100%);
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .buy-modal {
+    padding: 0.5vh 0;
+    align-items: flex-start;
+  }
+  .buy-modal-content {
+    max-width: 99vw;
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 1.2rem;
+    max-height: 98vh;
+    overflow-y: auto;
+    margin: 2vh auto;
+    scroll-padding-bottom: 80px;
+  }
+  .buy-modal-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+  .buy-modal-header h2 {
+    font-size: 1.3rem;
+  }
+  .buy-modal-close {
+    top: 0.5rem;
+    right: 0.7rem;
+    font-size: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+.buy-modal-form label {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.08rem;
+  color: #a855f7;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+.buy-modal-form input[type="email"],
+.buy-modal-form input[type="file"],
+.buy-modal-form textarea {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.08rem;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.buy-modal-form textarea {
+  font-size: 1.08rem;
+  min-height: 48px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.buy-modal-form input::placeholder,
+.buy-modal-form textarea::placeholder {
+  color: #a1a1aa;
+  opacity: 1;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.05rem;
+}
+@media (max-width: 700px) {
+  .buy-modal {
+    padding: 0.5vh 0;
+    align-items: flex-start;
+  }
+  .buy-modal-content {
+    max-width: 99vw;
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 1.2rem;
+    max-height: 98vh;
+    overflow-y: auto;
+    margin: 2vh auto;
+    scroll-padding-bottom: 80px;
+  }
+  .buy-modal-form input[type="email"],
+  .buy-modal-form input[type="file"],
+  .buy-modal-form textarea {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .buy-modal-form img {
+    max-width: 98vw;
+    max-height: 180px;
+  }
+}
+
+.buy-modal-form input[type="email"],
+.buy-modal-form input[type="file"],
+.buy-modal-form textarea {
+  font-size: 1.08rem;
+  padding: 0.7rem;
+  margin-bottom: 1.1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #a855f7;
+  background: #181c2f;
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+.buy-modal-form input[type="email"]:focus,
+.buy-modal-form input[type="file"]:focus,
+.buy-modal-form textarea:focus {
+  border: 1.5px solid #3b82f6;
+  outline: none;
+}
+.buy-modal-form input[type="file"] {
+  padding: 0.7rem 0.5rem;
+  background: #181c2f;
+  color: #a855f7;
+  border-radius: 0.7rem;
+  border: 1.5px dashed #a855f7;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+}
+.buy-modal-form input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(to right, #a855f7, #3b82f6);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background 0.2s;
+}
+.buy-modal-form input[type="file"]:hover {
+  border: 1.5px solid #3b82f6;
+  background: #23244a;
+}
+.buy-modal-form label {
+  color: #a855f7;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+  text-align: left;
+  font-size: 1.08rem;
+}
+.buy-modal-form img {
+  display: block;
+  margin: 0 auto 1rem auto;
+  max-width: 220px;
+  max-height: 220px;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.10);
+  border: 2px solid #3b82f6;
+}
+
+@media (max-width: 700px) {
+  .buy-modal-content {
+    max-width: 99vw;
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 1.2rem;
+  }
+  .buy-modal-form input[type="email"],
+  .buy-modal-form input[type="file"],
+  .buy-modal-form textarea {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .buy-modal-form img {
+    max-width: 98vw;
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .buy-modal-content {
+    max-width: 98vw;
+    min-width: unset;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 1.2rem;
+  }
+  .buy-modal-form input[type="email"],
+  .buy-modal-form input[type="file"],
+  .buy-modal-form textarea {
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+}
+.buy-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: #a855f7;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  touch-action: manipulation;
+}
+.buy-modal-close:hover, .buy-modal-close:focus {
+  color: #ec4899;
+  background: rgba(168,85,247,0.08);
+  outline: none;
+}
+@media (max-width: 480px) {
+  .buy-modal-content {
+    max-width: 100vw;
+    min-width: unset;
+    padding: 0.7rem 0.1rem 1rem 0.1rem;
+    border-radius: 0.7rem;
+    max-height: 98vh;
+    overflow-y: auto;
+    margin: 1vh auto;
+    scroll-padding-bottom: 80px;
+  }
+  .buy-modal-close {
+    top: 0.5rem;
+    right: 0.7rem;
+    font-size: 2.2rem;
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+}
+.buy-modal-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(168,85,247,0.15);
+}
+.buy-modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #a855f7, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.buy-modal-body {
+  margin-top: 1rem;
+}
+.buy-modal-qr-container {
+  margin: 1.5rem 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* QR sin fondo, sin bordes, ajustado a la imagen */
+.buy-modal-qr {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 0.7rem;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  display: block;
+  max-width: 90vw;
+}
+@media (max-width: 700px) {
+  .buy-modal-qr {
+    width: 140px;
+    height: 140px;
+    border-radius: 0.5rem;
+    padding: 0;
+  }
+}
 /* Reset and Base Styles */
 * {
   margin: 0;

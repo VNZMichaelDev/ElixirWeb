@@ -1,3 +1,217 @@
+// --- MODAL DE COMPRA ---
+
+const buyModal = document.getElementById('buy-modal');
+const buyModalTitle = document.getElementById('buy-modal-title');
+const buyModalDesc = document.getElementById('buy-modal-desc');
+const buyModalQR = document.getElementById('buy-modal-qr');
+let currentPlan = null;
+
+const BINANCE_QR = {
+  basico: 'https://i.postimg.cc/CdXGc1Q4/binance49.jpg', // Reemplaza por tu QR real
+  estandar: 'https://i.postimg.cc/rK4S3T62/binance89.jpg',
+  premium: 'https://i.postimg.cc/kDBNN8f4/binance129.jpg',
+};
+
+const PLAN_NAMES = {
+  basico: 'Plan Básico',
+  estandar: 'Plan Estándar',
+  premium: 'Plan Premium',
+};
+
+
+function openBuyModal(plan) {
+  if (!buyModal) return;
+  currentPlan = plan;
+  buyModal.classList.add('active');
+  buyModalTitle.textContent = `Comprar ${PLAN_NAMES[plan] || ''}`;
+  buyModalDesc.textContent = 'Escanea el código QR para pagar con Binance Pay:';
+  buyModalQR.src = BINANCE_QR[plan] || '';
+  // Limpiar campos
+  const fileInput = document.getElementById('buy-modal-capture');
+  const preview = document.getElementById('buy-modal-capture-preview');
+  const msgInput = document.getElementById('buy-modal-message');
+  const emailInput = document.getElementById('buy-modal-email');
+  if (fileInput) fileInput.value = '';
+  if (preview) preview.src = '';
+  if (msgInput) msgInput.value = '';
+  if (emailInput) emailInput.value = '';
+}
+
+function closeBuyModal() {
+  if (!buyModal) return;
+  buyModal.classList.remove('active');
+}
+
+
+
+// Reemplaza la función confirmPayment por una versión con EmailJS y feedback visual
+async function confirmPayment() {
+  const msgInput = document.getElementById('buy-modal-message');
+  const fileInput = document.getElementById('buy-modal-capture');
+  const emailInput = document.getElementById('buy-modal-email');
+  const paidBtn = document.getElementById('buy-modal-paid-btn');
+  let msg = msgInput && msgInput.value.trim() ? msgInput.value.trim() : '';
+  let userEmail = emailInput && emailInput.value.trim() ? emailInput.value.trim() : '';
+  const planText = PLAN_NAMES[currentPlan] || '';
+  const fullMsg = `¡Hola! Realicé el pago del ${planText}.\n\nMensaje del cliente: ${msg ? msg : '(sin mensaje)'}\nAdjunto el capture del pago abajo.`;
+
+  // Validación básica de email
+  if (!userEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(userEmail)) {
+    emailInput.classList.add('input-error');
+    paidBtn.textContent = 'Ingresa un correo válido';
+    paidBtn.classList.add('btn-error');
+    setTimeout(() => {
+      paidBtn.textContent = 'Ya pagué / Pago exitoso';
+      paidBtn.classList.remove('btn-error');
+      emailInput.classList.remove('input-error');
+    }, 2000);
+    return;
+  }
+
+  paidBtn.disabled = true;
+  paidBtn.textContent = 'Enviando...';
+
+  // 1. Enviar correo al cliente y a ElixirWeb (EmailJS)
+  let imageBase64 = '';
+  if (fileInput && fileInput.files && fileInput.files[0]) {
+    imageBase64 = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.readAsDataURL(fileInput.files[0]);
+    });
+  }
+
+  // Configuración EmailJS
+  const config = window.ElixirEmailJSConfig || {};
+  if (window.emailjs && config.serviceID && config.templateID && config.publicKey) {
+    try {
+      await window.emailjs.send(config.serviceID, config.templateID, {
+        plan: planText,
+        message: msg,
+        image: imageBase64,
+        user_email: userEmail
+      });
+      paidBtn.textContent = '¡Pago enviado! Revisa tu correo.';
+      paidBtn.classList.add('btn-success');
+      setTimeout(() => {
+        paidBtn.textContent = 'Ya pagué / Pago exitoso';
+        paidBtn.classList.remove('btn-success');
+        closeBuyModal();
+      }, 2500);
+    } catch (err) {
+      paidBtn.textContent = 'Error al enviar. Intenta de nuevo.';
+      paidBtn.classList.add('btn-error');
+      setTimeout(() => {
+        paidBtn.textContent = 'Ya pagué / Pago exitoso';
+        paidBtn.classList.remove('btn-error');
+      }, 2500);
+      return;
+    }
+  } else {
+    paidBtn.textContent = 'Error de configuración EmailJS';
+    paidBtn.classList.add('btn-error');
+    setTimeout(() => {
+      paidBtn.textContent = 'Ya pagué / Pago exitoso';
+      paidBtn.classList.remove('btn-error');
+    }, 2500);
+    return;
+  }
+
+  // 2. Abrir Tawk.to con mensaje prellenado
+  if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+    Tawk_API.maximize();
+    setTimeout(() => {
+      if (typeof Tawk_API.setAttributes === 'function') {
+        Tawk_API.setAttributes({ 'Mensaje de compra': fullMsg }, function(error){ });
+      }
+    }, 500);
+    alert('Por favor, adjunta el capture del pago en el chat que se abrirá.');
+  } else {
+    // 3. Si no está cargado, abrir WhatsApp con mensaje y sugerir enviar el capture
+    const phoneNumber = "3225880160";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMsg + '\n(Adjunta el capture aquí)')}`;
+    window.open(whatsappUrl, "_blank");
+  }
+}
+
+
+/*
+  EmailJS TEMPLATE SUGERIDO (HTML):
+  Puedes usar este HTML en tu template de EmailJS para que el cliente reciba un correo bonito y moderno, acorde al estilo de tu web.
+  Personalízalo en https://dashboard.emailjs.com/templates
+*/
+
+/*
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pago Exitoso - ElixirWeb Studio</title>
+  <style>
+    body { background: #181c2f; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; padding: 0; margin: 0; }
+    .container { max-width: 420px; margin: 2rem auto; background: #201c35; border-radius: 1.5rem; box-shadow: 0 8px 32px #a855f733; padding: 2rem; text-align: center; }
+    .logo { width: 60px; height: 60px; border-radius: 50%; background: #fff; margin-bottom: 1rem; }
+    .title { font-size: 1.5rem; font-weight: 700; background: linear-gradient(to right, #a855f7, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+    .desc { color: #c7d2fe; margin-bottom: 1.5rem; }
+    .plan { font-size: 1.1rem; color: #a855f7; font-weight: 600; margin-bottom: 1rem; }
+    .msg { background: #181c2f; color: #fff; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #a855f7; }
+    .capture { margin: 1.5rem 0; }
+    .capture img { max-width: 220px; border-radius: 0.7rem; box-shadow: 0 2px 8px #a855f71a; }
+    .footer { color: #93c5fd; font-size: 0.95rem; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.postimg.cc/W3CsCG95/logo.png" class="logo" alt="ElixirWeb Studio" />
+    <div class="title">¡Pago Exitoso!</div>
+    <div class="desc">Gracias por tu compra en <b>ElixirWeb Studio</b>. Hemos recibido tu pago y comenzaremos a procesar tu servicio.</div>
+    <div class="plan">Plan/Servicio: <b>${plan}</b></div>
+    <div class="msg">Mensaje del cliente:<br>${message}</div>
+    <div class="capture">
+      <b>Capture de pago:</b><br>
+      <img src="${image}" alt="Capture de pago" />
+    </div>
+    <div class="footer">
+      Si tienes dudas, responde este correo o contáctanos por WhatsApp.<br>
+      <b>ElixirWeb Studio</b> | elixirwebstudio@gmail.com
+    </div>
+  </div>
+</body>
+</html>
+*/
+
+// Cerrar modal con ESC o click fuera
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeBuyModal();
+});
+window.addEventListener('click', function(e) {
+  if (buyModal && buyModal.classList.contains('active')) {
+    if (e.target === buyModal) closeBuyModal();
+  }
+});
+
+// Preview de imagen
+document.addEventListener('DOMContentLoaded', function() {
+  const fileInput = document.getElementById('buy-modal-capture');
+  const preview = document.getElementById('buy-modal-capture-preview');
+  if (fileInput && preview) {
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          preview.src = ev.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+  }
+});
+
 // Global variables
 let isMobileMenuOpen = false
 
@@ -354,11 +568,11 @@ document.addEventListener("DOMContentLoaded", optimizeAnimations)
 
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/684e78b14aea20190b635e6c/1itp8etlj';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/684e78b14aea20190b635e6c/1itp8etlj';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
 })();
-<!--End of Tawk.to Script-->
+// End of Tawk.to Script

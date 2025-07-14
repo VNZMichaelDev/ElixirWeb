@@ -8,6 +8,8 @@
     <meta name="keywords" content="desarrollo web, diseño web, UI/UX, aplicaciones web, sitios web profesionales">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" as="script">
+    <script src="emailjs-loader.js"></script>
 </head>
 <body>
     <!-- Hero Background -->
@@ -327,7 +329,7 @@
                                 <i class="fas fa-rocket"></i>
                             </div>
                         </div>
-                        <div class="pricing-price">$80 USD</div>
+                        <div class="pricing-price">$49 USD</div>
                         <div class="pricing-features">
                             <div class="feature-item">
                                 <i class="fas fa-check"></i>
@@ -353,10 +355,14 @@
                                 <i class="fas fa-check"></i>
                                 <span>1 revisión incluida</span>
                             </div>
+                            <div class="feature-item" style="color:#f59e42;font-weight:600;">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Mantenimiento mensual: $20 USD <b>(obligatorio para mantener la web activa)</b></span>
+                            </div>
                         </div>
-                        <button class="btn btn-plan basic" onclick="openWhatsApp()">
-                            <i class="fab fa-whatsapp"></i>
-                            Solicitar Plan
+                        <button class="btn btn-plan basic" onclick="openBuyModal('basico')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar
                         </button>
                     </div>
                 </div>
@@ -373,7 +379,7 @@
                                 <i class="fas fa-award"></i>
                             </div>
                         </div>
-                        <div class="pricing-price">$140 USD</div>
+                        <div class="pricing-price">$89 USD</div>
                         <div class="pricing-features">
                             <div class="feature-item">
                                 <i class="fas fa-check"></i>
@@ -403,10 +409,14 @@
                                 <i class="fas fa-check"></i>
                                 <span>2 revisiones incluidas</span>
                             </div>
+                            <div class="feature-item" style="color:#f59e42;font-weight:600;">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Mantenimiento mensual: $20 USD <b>(obligatorio para mantener la web activa)</b></span>
+                            </div>
                         </div>
-                        <button class="btn btn-plan standard" onclick="openWhatsApp()">
-                            <i class="fab fa-whatsapp"></i>
-                            Solicitar Plan
+                        <button class="btn btn-plan standard" onclick="openBuyModal('estandar')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar
                         </button>
                     </div>
                 </div>
@@ -424,7 +434,7 @@
                                 <i class="fas fa-crown"></i>
                             </div>
                         </div>
-                        <div class="pricing-price">$200 USD</div>
+                        <div class="pricing-price">$129 USD</div>
                         <div class="pricing-features">
                             <div class="feature-item">
                                 <i class="fas fa-check"></i>
@@ -458,10 +468,14 @@
                                 <i class="fas fa-check"></i>
                                 <span>3 revisiones incluidas</span>
                             </div>
+                            <div class="feature-item" style="color:#f59e42;font-weight:600;">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Mantenimiento mensual: $20 USD <b>(obligatorio para mantener la web activa)</b></span>
+                            </div>
                         </div>
-                        <button class="btn btn-plan premium" onclick="openWhatsApp()">
-                            <i class="fab fa-whatsapp"></i>
-                            Solicitar Plan
+                        <button class="btn btn-plan premium" onclick="openBuyModal('premium')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar
                         </button>
                     </div>
                 </div>
@@ -729,6 +743,37 @@
         </div>
     </section>
 
+    <!-- Payment Modal -->
+    <div id="buy-modal" class="buy-modal" tabindex="-1" aria-modal="true" role="dialog" aria-labelledby="buy-modal-title" aria-describedby="buy-modal-desc">
+        <div class="buy-modal-content">
+            <button class="buy-modal-close" onclick="closeBuyModal()" aria-label="Cerrar modal">&times;</button>
+            <div class="buy-modal-header">
+                <img src="https://i.postimg.cc/W3CsCG95/logo.png" alt="ElixirWeb Studio" class="buy-modal-logo">
+                <h2 id="buy-modal-title">Comprar Servicio</h2>
+            </div>
+            <div class="buy-modal-body">
+                <p id="buy-modal-desc">Escanea el código QR para pagar con Binance Pay:</p>
+                <div class="buy-modal-qr-container">
+                    <img id="buy-modal-qr" src="" alt="QR Binance Pay" class="buy-modal-qr">
+                </div>
+                <div class="buy-modal-form">
+                    <label for="buy-modal-email">Tu correo electrónico (para el comprobante):</label>
+                    <input type="email" id="buy-modal-email" placeholder="tucorreo@ejemplo.com" required />
+                    <label for="buy-modal-capture">Sube el capture del pago:</label>
+                    <input type="file" id="buy-modal-capture" accept="image/*" required />
+                    <img id="buy-modal-capture-preview" src="" alt="Preview Capture" style="display:none;" />
+                    <label for="buy-modal-message">¿Qué servicio necesitas o algún mensaje?</label>
+                    <textarea id="buy-modal-message" rows="2" placeholder="Ej: Quiero el Plan Premium para mi web de portafolio"></textarea>
+                </div>
+                <button class="btn btn-primary" id="buy-modal-paid-btn" onclick="confirmPayment()">
+                    Ya pagué / Pago exitoso
+                </button>
+                <div style="margin-top:1rem;font-size:0.95em;color:#fff;background:rgba(168,85,247,0.08);padding:0.7rem 1rem;border-radius:0.7rem;">
+                    <b>Nota:</b> El mensaje y el capture se enviarán al chat. Si el chat no permite adjuntar la imagen, puedes enviarla por WhatsApp.
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -771,6 +816,9 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 
+
+    <script src="emailjs-config.js"></script>
+    <script src="emailjs-loader.js"></script>
     <script src="script.js"></script>
       <!--Start of Tawk.to Script-->
 
