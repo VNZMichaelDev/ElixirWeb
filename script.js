@@ -27,12 +27,10 @@ function openBuyModal(plan) {
   buyModalDesc.textContent = 'Escanea el código QR para pagar con Binance Pay:';
   buyModalQR.src = BINANCE_QR[plan] || '';
   // Limpiar campos
-  const fileInput = document.getElementById('buy-modal-capture');
-  const preview = document.getElementById('buy-modal-capture-preview');
+  const orderIdInput = document.getElementById('buy-modal-orderid');
   const msgInput = document.getElementById('buy-modal-message');
   const emailInput = document.getElementById('buy-modal-email');
-  if (fileInput) fileInput.value = '';
-  if (preview) preview.src = '';
+  if (orderIdInput) orderIdInput.value = '';
   if (msgInput) msgInput.value = '';
   if (emailInput) emailInput.value = '';
 }
@@ -47,13 +45,14 @@ function closeBuyModal() {
 // Reemplaza la función confirmPayment por una versión con EmailJS y feedback visual
 async function confirmPayment() {
   const msgInput = document.getElementById('buy-modal-message');
-  const fileInput = document.getElementById('buy-modal-capture');
+  const orderIdInput = document.getElementById('buy-modal-orderid');
   const emailInput = document.getElementById('buy-modal-email');
   const paidBtn = document.getElementById('buy-modal-paid-btn');
   let msg = msgInput && msgInput.value.trim() ? msgInput.value.trim() : '';
   let userEmail = emailInput && emailInput.value.trim() ? emailInput.value.trim() : '';
+  let orderId = orderIdInput && orderIdInput.value.trim().toUpperCase();
   const planText = PLAN_NAMES[currentPlan] || '';
-  const fullMsg = `¡Hola! Realicé el pago del ${planText}.\n\nMensaje del cliente: ${msg ? msg : '(sin mensaje)'}\nAdjunto el capture del pago abajo.`;
+  const fullMsg = `¡Hola! Realicé el pago del ${planText}.\n\nMensaje del cliente: ${msg ? msg : '(sin mensaje)'}\nID de orden: ${orderId}`;
 
   // Validación básica de email
   if (!userEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(userEmail)) {
@@ -67,19 +66,21 @@ async function confirmPayment() {
     }, 2000);
     return;
   }
+  // Validación de ID de orden
+  if (!orderId || orderId.length !== 8) {
+    orderIdInput.classList.add('input-error');
+    paidBtn.textContent = 'ID de orden inválida';
+    paidBtn.classList.add('btn-error');
+    setTimeout(() => {
+      paidBtn.textContent = 'Ya pagué / Pago exitoso';
+      paidBtn.classList.remove('btn-error');
+      orderIdInput.classList.remove('input-error');
+    }, 2000);
+    return;
+  }
 
   paidBtn.disabled = true;
   paidBtn.textContent = 'Enviando...';
-
-  // 1. Enviar correo al cliente y a ElixirWeb (EmailJS)
-  let imageBase64 = '';
-  if (fileInput && fileInput.files && fileInput.files[0]) {
-    imageBase64 = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target.result);
-      reader.readAsDataURL(fileInput.files[0]);
-    });
-  }
 
   // Configuración EmailJS
   const config = window.ElixirEmailJSConfig || {};
@@ -88,7 +89,7 @@ async function confirmPayment() {
       await window.emailjs.send(config.serviceID, config.templateID, {
         plan: planText,
         message: msg,
-        image: imageBase64,
+        orderid: orderId,
         user_email: userEmail
       });
       paidBtn.textContent = '¡Pago enviado! Revisa tu correo.';
@@ -125,11 +126,11 @@ async function confirmPayment() {
         Tawk_API.setAttributes({ 'Mensaje de compra': fullMsg }, function(error){ });
       }
     }, 500);
-    alert('Por favor, adjunta el capture del pago en el chat que se abrirá.');
+    alert('Por favor, comparte la ID de orden en el chat que se abrirá.');
   } else {
-    // 3. Si no está cargado, abrir WhatsApp con mensaje y sugerir enviar el capture
+    // 3. Si no está cargado, abrir WhatsApp con mensaje y sugerir enviar la ID
     const phoneNumber = "3225880160";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMsg + '\n(Adjunta el capture aquí)')}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMsg + '\n(ID de orden incluida)')}`;
     window.open(whatsappUrl, "_blank");
   }
 }
