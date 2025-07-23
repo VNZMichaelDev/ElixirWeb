@@ -7,9 +7,9 @@ const buyModalQR = document.getElementById('buy-modal-qr');
 let currentPlan = null;
 
 const BINANCE_QR = {
-  basico: 'https://i.postimg.cc/CdXGc1Q4/binance49.jpg', // Reemplaza por tu QR real
-  estandar: 'https://i.postimg.cc/rK4S3T62/binance89.jpg',
-  premium: 'https://i.postimg.cc/kDBNN8f4/binance129.jpg',
+  basico: 'https://i.postimg.cc/sMFRkBJF/binance49.jpg', // Reemplaza por tu QR real
+  estandar: 'https://i.postimg.cc/hX9qcSCX/binance89.jpg',
+  premium: 'https://i.postimg.cc/nC9JSKBY/binance129.jpg',
 };
 
 const PLAN_NAMES = {
